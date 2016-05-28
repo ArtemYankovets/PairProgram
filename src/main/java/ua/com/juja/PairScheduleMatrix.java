@@ -1,7 +1,7 @@
 package ua.com.juja;
 
 public class PairScheduleMatrix {
-    private static int membersNum = 7;
+    private static int membersNum = 300;
     private static int weeksNum;
     private static String[][] schedule;
 
@@ -59,19 +59,32 @@ public class PairScheduleMatrix {
     private static void fillMatrix() {
         int delta = 1;
         int columns = 0;
+
         while (columns < weeksNum) {
-            int index = 0;
+            int index = -1;
+            int d = 1;
+            boolean indexChangedBack = false;
             int rows = 0;
+
             while (rows < schedule.length) {
                 if ((schedule[rows][columns]) == null) {
+
+                    //index prepared
+                    if ((rows < delta) && (rows > 0)) {
+                        index = delta - d;
+                        d++;
+                    } else {
+                        if ((!indexChangedBack) && (rows == (2 * delta))) {
+                            index = delta;
+                            indexChangedBack = true;
+                        } else {
+                            index++;
+                        }
+                    }
+
+                    //filled cells in table by index and index+delta
                     schedule[rows][columns] = groupNameArray[index];
                     if ((rows + delta) < schedule.length) schedule[rows + delta][columns] = groupNameArray[index];
-
-                    index++;
-
-                    //todo: check groups name's amount with weeks amount
-                    if (index >= groupNameArray.length) fillGoupeNameArray();
-
                 }
                 rows++;
             }
