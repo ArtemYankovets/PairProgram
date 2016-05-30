@@ -245,8 +245,9 @@ public class PairScheduleTable {
     /**
      * Addition new competitor to the end of schedule matrix
      *
+     * @param curretWeek the number of competitor
      */
-    public boolean add(){
+    public boolean add(int curretWeek){
         //Do something
         return false;
     }
