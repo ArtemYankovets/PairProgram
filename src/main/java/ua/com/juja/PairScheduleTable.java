@@ -96,9 +96,9 @@ public class PairScheduleTable {
 
         //created and filled groupNameArray
         fillGoupeNameArray();
-        while (groupNum >= 26) {
+        while (groupNum >= EN_ALFABET_AMOUNT) {
+            groupNum -= EN_ALFABET_AMOUNT;
             fillGoupeNameArray();
-            groupNum -= 26;
         }
     }
 
@@ -159,7 +159,7 @@ public class PairScheduleTable {
                             index = delta;
                             indexChangedBack = true;
                         } else {
-
+                            if(index >= groupNameArray.length) fillGoupeNameArray();
                             index++;
                         }
                     }
